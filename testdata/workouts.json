@@ -1,0 +1,59 @@
+{
+  "records": [
+    {
+      "id": "d4e5f6a7-b8c9-0123-defg-456789012345",
+      "user_id": 12345,
+      "start": "2026-02-25T17:00:00.000Z",
+      "end": "2026-02-25T18:05:00.000Z",
+      "sport_id": 1,
+      "sport_name": "Running",
+      "score_state": "SCORED",
+      "score": {
+        "strain": 14.2,
+        "average_heart_rate": 145,
+        "max_heart_rate": 178,
+        "kilojoule": 1850.5,
+        "percent_recorded": 100.0,
+        "distance_meter": 8045.0,
+        "altitude_gain_meter": 52.3,
+        "altitude_change_meter": 0.0,
+        "zone_duration": {
+          "zone_zero_milli": 0,
+          "zone_one_milli": 600000,
+          "zone_two_milli": 1200000,
+          "zone_three_milli": 1500000,
+          "zone_four_milli": 600000,
+          "zone_five_milli": 0
+        }
+      }
+    },
+    {
+      "id": "e5f6a7b8-c9d0-1234-efgh-567890123456",
+      "user_id": 12345,
+      "start": "2026-02-24T07:00:00.000Z",
+      "end": "2026-02-24T08:00:00.000Z",
+      "sport_id": 71,
+      "sport_name": "Functional Fitness",
+      "score_state": "SCORED",
+      "score": {
+        "strain": 8.7,
+        "average_heart_rate": 128,
+        "max_heart_rate": 155,
+        "kilojoule": 980.2,
+        "percent_recorded": 98.5,
+        "distance_meter": 0.0,
+        "altitude_gain_meter": 0.0,
+        "altitude_change_meter": 0.0,
+        "zone_duration": {
+          "zone_zero_milli": 300000,
+          "zone_one_milli": 900000,
+          "zone_two_milli": 1200000,
+          "zone_three_milli": 900000,
+          "zone_four_milli": 300000,
+          "zone_five_milli": 0
+        }
+      }
+    }
+  ],
+  "next_token": "abc123"
+}
