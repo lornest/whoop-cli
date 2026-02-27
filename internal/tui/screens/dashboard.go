@@ -6,10 +6,10 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/lornest/whoop-cli/pkg/whoop"
-	"github.com/lornest/whoop-cli/internal/tui/style"
 	"github.com/lornest/whoop-cli/internal/tui/components"
+	"github.com/lornest/whoop-cli/internal/tui/style"
 	"github.com/lornest/whoop-cli/internal/util"
+	"github.com/lornest/whoop-cli/pkg/whoop"
 )
 
 // DashboardModel shows today's overview.

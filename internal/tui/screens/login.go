@@ -68,35 +68,41 @@ func (m LoginModel) View() string {
 		Foreground(style.ColorGreen).
 		Bold(true).
 		MarginBottom(1)
+		
+	dialogBoxStyle := lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(style.ColorBorder).
+		Padding(1, 4)
+
+	var content string
 
 	if m.loading {
-		content := lipgloss.JoinVertical(lipgloss.Center,
+		content = lipgloss.JoinVertical(lipgloss.Center,
 			titleStyle.Render("WHOOP CLI"),
 			"",
 			m.spinner.View()+" Waiting for browser authentication...",
 			"",
 			lipgloss.NewStyle().Foreground(style.ColorDim).Render("Complete the login in your browser"),
 		)
-		return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, content)
-	}
-
-	if m.err != nil {
-		content := lipgloss.JoinVertical(lipgloss.Center,
+	} else if m.err != nil {
+		content = lipgloss.JoinVertical(lipgloss.Center,
 			titleStyle.Render("WHOOP CLI"),
 			"",
 			style.ErrorStyle.Render("Login failed: "+m.err.Error()),
 			"",
 			lipgloss.NewStyle().Foreground(style.ColorDim).Render("Press 'l' to try again or 'q' to quit"),
 		)
-		return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, content)
+	} else {
+		content = lipgloss.JoinVertical(lipgloss.Center,
+			titleStyle.Render("WHOOP CLI"),
+			"",
+			lipgloss.NewStyle().Foreground(style.ColorWhite).Render("Welcome! You need to log in to continue."),
+			"",
+			lipgloss.NewStyle().Foreground(style.ColorDim).Render("Press 'l' to login or 'q' to quit"),
+		)
 	}
 
-	content := lipgloss.JoinVertical(lipgloss.Center,
-		titleStyle.Render("WHOOP CLI"),
-		"",
-		lipgloss.NewStyle().Foreground(style.ColorWhite).Render("Welcome! You need to log in to continue."),
-		"",
-		lipgloss.NewStyle().Foreground(style.ColorDim).Render("Press 'l' to login or 'q' to quit"),
-	)
-	return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, content)
+	dialog := dialogBoxStyle.Render(content)
+	return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, dialog)
 }
+

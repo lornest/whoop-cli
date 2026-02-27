@@ -15,10 +15,12 @@ func TestWorkoutsModel_Loading(t *testing.T) {
 }
 
 func TestWorkoutsModel_WithData(t *testing.T) {
-	m := WorkoutsModel{
-		width:  120,
-		height: 40,
-		workouts: &whoop.WorkoutResponse{
+	m := NewWorkoutsModel(nil)
+	m.width = 120
+	m.height = 40
+
+	msg := WorkoutsMsg{
+		Data: &whoop.WorkoutResponse{
 			Records: []whoop.Workout{
 				{
 					Start:      "2026-02-25T17:00:00.000Z",
@@ -30,6 +32,8 @@ func TestWorkoutsModel_WithData(t *testing.T) {
 			},
 		},
 	}
+	m, _ = m.Update(msg)
+
 	view := m.View()
 	assert.Contains(t, view, "Workouts")
 	assert.Contains(t, view, "Running")
@@ -37,10 +41,12 @@ func TestWorkoutsModel_WithData(t *testing.T) {
 }
 
 func TestWorkoutsModel_Navigation(t *testing.T) {
-	m := WorkoutsModel{
-		width:  120,
-		height: 40,
-		workouts: &whoop.WorkoutResponse{
+	m := NewWorkoutsModel(nil)
+	m.width = 120
+	m.height = 40
+
+	msg := WorkoutsMsg{
+		Data: &whoop.WorkoutResponse{
 			Records: []whoop.Workout{
 				{Start: "2026-02-25T17:00:00.000Z", SportID: 1, Score: &whoop.WorkoutScore{Strain: 14.2}},
 				{Start: "2026-02-24T07:00:00.000Z", SportID: 71, Score: &whoop.WorkoutScore{Strain: 8.7}},
@@ -48,21 +54,26 @@ func TestWorkoutsModel_Navigation(t *testing.T) {
 		},
 	}
 
-	assert.Equal(t, 0, m.selected)
+	m, _ = m.Update(msg)
+
+	assert.Equal(t, 0, m.table.Cursor())
 
 	m, _ = m.Update(tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune{'j'}})
-	assert.Equal(t, 1, m.selected)
+	assert.Equal(t, 1, m.table.Cursor())
 
 	m, _ = m.Update(tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune{'k'}})
-	assert.Equal(t, 0, m.selected)
+	assert.Equal(t, 0, m.table.Cursor())
 
 	// Can't go below 0
 	m, _ = m.Update(tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune{'k'}})
-	assert.Equal(t, 0, m.selected)
+	assert.Equal(t, 0, m.table.Cursor())
 }
 
 func TestWorkoutsModel_Empty(t *testing.T) {
-	m := WorkoutsModel{width: 80, height: 24, workouts: &whoop.WorkoutResponse{Records: []whoop.Workout{}}}
+	m := NewWorkoutsModel(nil)
+	m.width = 80
+	m.height = 24
+	m, _ = m.Update(WorkoutsMsg{Data: &whoop.WorkoutResponse{Records: []whoop.Workout{}}})
 	view := m.View()
 	assert.Contains(t, view, "No workouts")
 }

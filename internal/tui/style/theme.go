@@ -40,7 +40,8 @@ var (
 
 	TitleStyle = lipgloss.NewStyle().
 			Foreground(ColorWhite).
-			Bold(true)
+			Bold(true).
+			MarginBottom(1)
 
 	LabelStyle = lipgloss.NewStyle().
 			Foreground(ColorDim)
@@ -49,13 +50,46 @@ var (
 			Foreground(ColorWhite).
 			Bold(true)
 
+	activeTabBorder = lipgloss.Border{
+		Top:         "─",
+		Bottom:      " ",
+		Left:        "│",
+		Right:       "│",
+		TopLeft:     "╭",
+		TopRight:    "╮",
+		BottomLeft:  "┘",
+		BottomRight: "└",
+	}
+
+	tabBorder = lipgloss.Border{
+		Top:         "─",
+		Bottom:      "─",
+		Left:        "│",
+		Right:       "│",
+		TopLeft:     "╭",
+		TopRight:    "╮",
+		BottomLeft:  "┴",
+		BottomRight: "┴",
+	}
+
 	ActiveTabStyle = lipgloss.NewStyle().
+			Border(activeTabBorder, true).
+			BorderForeground(ColorBlue).
 			Foreground(ColorBlue).
 			Bold(true).
-			Underline(true)
+			Padding(0, 2)
 
 	InactiveTabStyle = lipgloss.NewStyle().
-				Foreground(ColorDim)
+				Border(tabBorder, true).
+				BorderForeground(ColorBorder).
+				Foreground(ColorDim).
+				Padding(0, 2)
+
+	TabGapStyle = lipgloss.NewStyle().
+			Border(lipgloss.Border{
+			Bottom: "─",
+		}, true).
+		BorderForeground(ColorBorder)
 
 	StatusBarStyle = lipgloss.NewStyle().
 			Foreground(ColorDim).

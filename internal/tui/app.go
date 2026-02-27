@@ -4,9 +4,9 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/lornest/whoop-cli/pkg/whoop"
 	"github.com/lornest/whoop-cli/internal/tui/components"
 	"github.com/lornest/whoop-cli/internal/tui/screens"
+	"github.com/lornest/whoop-cli/pkg/whoop"
 )
 
 const (

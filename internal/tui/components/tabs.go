@@ -1,8 +1,6 @@
 package components
 
 import (
-	"strings"
-
 	"github.com/charmbracelet/lipgloss"
 	"github.com/lornest/whoop-cli/internal/tui/style"
 )
@@ -14,13 +12,22 @@ var TabNames = []string{"Dashboard", "Recovery", "Sleep", "Workouts", "Profile"}
 func RenderTabs(active int, width int) string {
 	var tabs []string
 	for i, name := range TabNames {
-		label := name
 		if i == active {
-			tabs = append(tabs, style.ActiveTabStyle.Render(label))
+			tabs = append(tabs, style.ActiveTabStyle.Render(name))
 		} else {
-			tabs = append(tabs, style.InactiveTabStyle.Render(label))
+			tabs = append(tabs, style.InactiveTabStyle.Render(name))
 		}
 	}
-	bar := strings.Join(tabs, "  │  ")
-	return lipgloss.NewStyle().Width(width).Render(bar)
+	row := lipgloss.JoinHorizontal(lipgloss.Top, tabs...)
+
+	gapWidth := width - lipgloss.Width(row)
+	if gapWidth < 0 {
+		gapWidth = 0
+	}
+
+	gap := style.TabGapStyle.
+		Width(gapWidth).
+		Render("")
+
+	return lipgloss.JoinHorizontal(lipgloss.Bottom, row, gap)
 }

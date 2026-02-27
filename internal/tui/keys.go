@@ -4,19 +4,19 @@ import "github.com/charmbracelet/bubbles/key"
 
 // KeyMap defines the global key bindings.
 type KeyMap struct {
-	Quit      key.Binding
-	Help      key.Binding
-	Refresh   key.Binding
-	NextTab   key.Binding
-	PrevTab   key.Binding
-	Tab1      key.Binding
-	Tab2      key.Binding
-	Tab3      key.Binding
-	Tab4      key.Binding
-	Tab5      key.Binding
-	Up        key.Binding
-	Down      key.Binding
-	Enter     key.Binding
+	Quit    key.Binding
+	Help    key.Binding
+	Refresh key.Binding
+	NextTab key.Binding
+	PrevTab key.Binding
+	Tab1    key.Binding
+	Tab2    key.Binding
+	Tab3    key.Binding
+	Tab4    key.Binding
+	Tab5    key.Binding
+	Up      key.Binding
+	Down    key.Binding
+	Enter   key.Binding
 }
 
 // DefaultKeyMap returns the default key bindings.

@@ -5,17 +5,17 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/lornest/whoop-cli/pkg/whoop"
-	"github.com/lornest/whoop-cli/internal/tui/style"
 	"github.com/lornest/whoop-cli/internal/tui/components"
+	"github.com/lornest/whoop-cli/internal/tui/style"
 	"github.com/lornest/whoop-cli/internal/util"
+	"github.com/lornest/whoop-cli/pkg/whoop"
 )
 
 // ProfileModel shows body measurements.
 type ProfileModel struct {
-	client *whoop.Client
-	body   *whoop.BodyMeasurement
-	err    error
+	client  *whoop.Client
+	body    *whoop.BodyMeasurement
+	err     error
 	loading bool
 	width   int
 	height  int
